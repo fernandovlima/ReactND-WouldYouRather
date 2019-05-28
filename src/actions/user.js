@@ -8,7 +8,7 @@ export function setAuthedUser(id) {
   }
 }
 
-export function getAllUsers(user) {
+export function getAllUsers() {
   return {
     type: GET_ALL_USERS
   }
