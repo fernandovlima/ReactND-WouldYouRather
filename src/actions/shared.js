@@ -10,7 +10,7 @@ const AUTHED_ID = "johndoe"
 export function handleInitialData() {
   return dispatch => {
     dispatch(showLoading())
-    return getInitialData().then(({ users, questions }) => {
+    return getInitialData().then(({ questions }) => {
       dispatch(getAllQuestions(questions))
       dispatch(setAuthedUser(AUTHED_ID))
       dispatch(hideLoading())

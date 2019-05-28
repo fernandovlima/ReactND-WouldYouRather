@@ -4,15 +4,8 @@ import "./index.css"
 import App from "./App"
 import * as serviceWorker from "./serviceWorker"
 //store
-import { createStore } from "redux"
+import store from "./store"
 import { Provider } from "react-redux"
-//reducer
-import reducer from "./reducers"
-//middleware
-import middleware from "./middleware"
-
-//create store
-const store = createStore(reducer, middleware)
 
 ReactDOM.render(
   <Provider store={store}>
