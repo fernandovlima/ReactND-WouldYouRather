@@ -9,10 +9,13 @@ export function getQuestion(question) {
   }
 }
 
-export function addQuestion(question) {
+export function addQuestion(question, user) {
   return {
     type: ADD_QUESTION,
-    payload: question
+    payload: {
+      question,
+      user
+    }
   }
 }
 
