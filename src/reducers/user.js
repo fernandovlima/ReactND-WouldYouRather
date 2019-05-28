@@ -1,4 +1,4 @@
-import { SET_AUTHED_USER } from "../actions/user"
+import { SET_AUTHED_USER, GET_ALL_USERS } from "../actions/user"
 
 export default function user(state = {}, action) {
   switch (action.type) {
@@ -6,6 +6,11 @@ export default function user(state = {}, action) {
       return {
         ...state,
         ...action.payload.id
+      }
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        ...action.users
       }
     default:
       return state

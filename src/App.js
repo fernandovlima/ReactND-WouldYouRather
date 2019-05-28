@@ -5,7 +5,7 @@ import { handleInitialData } from "./actions/shared"
 //loading bar component from react-redux-loading
 import { LoadingBar } from "react-redux-loading-bar"
 
-class App extends Component() {
+class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
