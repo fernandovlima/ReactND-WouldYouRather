@@ -1,8 +1,8 @@
-export const REQUEST_AUTH = "REQUEST_AUTH"
+export const SET_AUTHED_USER = "SET_AUTHED_USER"
 
-export function requestAuth(user) {
+export function setAuthedUser(id) {
   return {
-    type: REQUEST_AUTH,
-    payload: user
+    type: SET_AUTHED_USER,
+    payload: id
   }
 }
