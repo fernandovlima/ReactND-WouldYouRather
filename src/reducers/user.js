@@ -9,8 +9,7 @@ export default function user(state = {}, action) {
       }
     case GET_ALL_USERS:
       return {
-        ...state,
-        ...action.users
+        ...state
       }
     default:
       return state

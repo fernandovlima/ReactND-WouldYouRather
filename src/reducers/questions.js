@@ -7,7 +7,9 @@ import {
 export default function questions(state = {}, action) {
   switch (action.type) {
     case ADD_QUESTION:
-      return {}
+      return {
+        ...state
+      }
     case GET_ALL_QUESTIONS:
       return {}
     case GET_QUESTION:

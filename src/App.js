@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react"
 import "./App.css"
 import { connect } from "react-redux"
 import { handleInitialData } from "./actions/shared"
-//loading bar component from react-redux-loading
+//loading bar component from react-redux-loading-bar
 import { LoadingBar } from "react-redux-loading-bar"
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
         <LoadingBar />
 
         <div className="App">
-          <h3>Would you rather?</h3>
+          <h2>Would you rather?</h2>
         </div>
       </Fragment>
     )
