@@ -8,8 +8,9 @@ export function setAuthedUser(id) {
   }
 }
 
-export function getAllUsers() {
+export function getAllUsers(users) {
   return {
-    type: GET_ALL_USERS
+    type: GET_ALL_USERS,
+    payload: users
   }
 }

@@ -23,9 +23,10 @@ export function addQuestion(question, user) {
   }
 }
 
-export function getAllQuestions() {
+export function getAllQuestions(questions) {
   return {
-    type: GET_ALL_QUESTIONS
+    type: GET_ALL_QUESTIONS,
+    payload: questions
   }
 }
 
