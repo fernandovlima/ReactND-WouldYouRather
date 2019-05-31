@@ -34,10 +34,8 @@ export function handleAddQuestion(question) {
   return (dispatch, getState) => {
     const { authedUser } = getState()
     dispatch(showLoading())
-    return {
-      question
-    }
-      .then(question => dispatch(saveQuestion(question, authedUser)))
+    return saveQuestion(question)
+      .then(question => dispatch(addQuestion(question, authedUser)))
       .then(() => dispatch(hideLoading()))
   }
 }

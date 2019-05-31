@@ -8,12 +8,13 @@ export default function questions(state = {}, action) {
   switch (action.type) {
     case ADD_QUESTION:
       return {
-        //todo
+        ...state
       }
     case GET_ALL_QUESTIONS:
+      console.log("QUESTION", action)
       return {
         ...state,
-        ...action.questions
+        ...action.payload
       }
     case GET_QUESTION:
       return {
