@@ -25,6 +25,7 @@ class Login extends Component {
   render() {
     const { user } = this.props
     console.log("props em login: ", this.props)
+    console.log("USER AVATAR URL: ", user.avatarURL)
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
