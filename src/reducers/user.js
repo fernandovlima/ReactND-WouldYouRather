@@ -6,7 +6,7 @@ export default function user(state = {}, action) {
       console.log("TESTE DE STATE: ", action)
       return {
         ...state,
-        ...action.payload.id
+        authedUser: action.payload
       }
     case GET_ALL_USERS:
       return {

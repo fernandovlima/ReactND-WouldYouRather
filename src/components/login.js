@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { getAllUser } from "../actions/user"
+import { getAllUser, setAuthedUser } from "../actions/user"
 
 class Login extends Component {
   state = {
@@ -12,6 +12,7 @@ class Login extends Component {
   }
   handleSubmit = event => {
     event.preventDefault()
+    this.props.dispatch(setAuthedUser(this.state.user))
     this.props.history.push("/dashboard")
   }
 
@@ -30,6 +31,7 @@ class Login extends Component {
           <label>
             Select the user:
             <select onChange={this.handleChange}>
+              <option>Select a user to login</option>
               {typeof user !== "undefined" &&
                 Object.values(user).map(user => (
                   <option key={user.id} value={user.id}>

@@ -12,9 +12,6 @@ export function setAuthedUser(id) {
 }
 
 export function getAllUsers(users) {
-  console.log("====================================")
-  console.log(users)
-  console.log("====================================")
   return {
     type: GET_ALL_USERS,
     payload: users
