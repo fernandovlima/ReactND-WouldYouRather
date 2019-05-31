@@ -1,15 +1,15 @@
-import React from "react"
+import React, { Component } from "react"
 import { connect } from "react-redux"
-const Dashboard = props => {
-    componentDidMount() {
-        
-    }
-  return (
-    <div>
-      {props.user.avatarURL}
-      <div>{JSON.stringify(props.user)}</div>
-    </div>
-  )
+import { getAllQuestionsAPI } from "../actions/questions"
+
+class Dashboard extends Component {
+  componentDidMount() {
+    this.props.dispatch(getAllQuestionsAPI())
+  }
+  render() {
+    const { user } = this.props
+    return <div>{user.avatarURL}</div>
+  }
 }
 
 const mapStateToProps = store => {

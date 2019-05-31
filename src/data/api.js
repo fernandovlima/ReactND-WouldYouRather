@@ -23,3 +23,9 @@ export function getUsers() {
     users
   }))
 }
+
+export function getQuestions() {
+  return Promise.all([_getQuestions()]).then(([questions]) => ({
+    questions
+  }))
+}

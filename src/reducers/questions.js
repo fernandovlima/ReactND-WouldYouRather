@@ -14,7 +14,7 @@ export default function questions(state = {}, action) {
       console.log("QUESTION", action)
       return {
         ...state,
-        ...action.payload
+        ...action.payload.questions
       }
     case GET_QUESTION:
       return {

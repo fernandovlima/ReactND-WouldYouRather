@@ -1,4 +1,4 @@
-import { saveQuestion } from "../data/api"
+import { saveQuestion, getQuestions } from "../data/api"
 //loading bar component from react-redux-loading-bar
 import { showLoading, hideLoading } from "react-redux-loading-bar"
 
@@ -36,6 +36,15 @@ export function handleAddQuestion(question) {
     dispatch(showLoading())
     return saveQuestion(question)
       .then(question => dispatch(addQuestion(question, authedUser)))
+      .then(() => dispatch(hideLoading()))
+  }
+}
+
+export function getAllQuestionsAPI() {
+  return dispatch => {
+    dispatch(showLoading())
+    return getQuestions()
+      .then(questions => dispatch(getAllQuestions(questions)))
       .then(() => dispatch(hideLoading()))
   }
 }
