@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { getAllQuestionsAPI } from "../actions/questions"
+//components
+import Questions from "../components/questions/question"
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -8,7 +10,11 @@ class Dashboard extends Component {
   }
   render() {
     const { user } = this.props
-    return <div>{user.avatarURL}</div>
+    return (
+      <div>
+        <div>{user.avatarURL}</div>
+      </div>
+    )
   }
 }
 
