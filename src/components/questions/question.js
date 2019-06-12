@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 
-const Question = ({ user, loading }) => {
+const Question = ({ user, loading, props }) => {
   return (
     <div className="question-wraper">
       {loading ? (
@@ -9,11 +9,22 @@ const Question = ({ user, loading }) => {
       ) : (
         <div>
           <div className="question-user">
-            <h5>{user.name}</h5>
+            <h5>{user.name} says...</h5>
           </div>
           <div className="user-avatar">
             <img src={user.avatarURL} alt="avatar" />
           </div>
+          <div className="question-info">
+            <h4>Would you rather</h4>
+            <p>... question info here ...</p>
+          </div>
+          <button
+            className="btn"
+            label="View Poll"
+            onClick={() => this.props.history.push("/")}
+          >
+            View Poll
+          </button>
         </div>
       )}
     </div>

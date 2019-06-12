@@ -2,9 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { getAllQuestionsAPI } from "../actions/questions"
 //components
-import Questions from "../components/questions/question"
-import AnsweredQuestion from "./questions/answeredQuestions"
-import UnansweredQuestions from "./questions/UnansweredQuestions"
+import QuestionPoll from "./questions/questionPoll"
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -16,8 +14,8 @@ class Dashboard extends Component {
     console.log("TESTETESTEW: ", this.props.unanswered)
     return (
       <div>
-        <AnsweredQuestion idQuestions={answers} />
-        <UnansweredQuestions idQuestions={unanswered} />
+        <QuestionPoll idQuestions={answers} />
+        <QuestionPoll idQuestions={unanswered} />
       </div>
     )
   }

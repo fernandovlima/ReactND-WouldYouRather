@@ -1,7 +1,7 @@
 import React from "react"
 import Questions from "./question"
 
-const AnsweredQuestions = props => {
+const QuestionPoll = props => {
   return (
     <div>
       {Object.keys(props.idQuestions).map(question => (
@@ -11,4 +11,4 @@ const AnsweredQuestions = props => {
   )
 }
 
-export default AnsweredQuestions
+export default QuestionPoll

@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { getAllUser, setAuthedUser } from "../actions/user"
+import { Form, Button } from "react-bootstrap"
 
 class Login extends Component {
   state = {
@@ -27,8 +28,8 @@ class Login extends Component {
     console.log("props em login: ", this.props)
     console.log("USER AVATAR URL: ", user.avatarURL)
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className="login-container">
+        {/* <form onSubmit={this.handleSubmit}>
           <label>
             Select the user:
             <select onChange={this.handleChange}>
@@ -44,7 +45,24 @@ class Login extends Component {
           <button className="btn" type="submit">
             Login
           </button>
-        </form>
+        </form> */}
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Label>Would You Rather - Login in:</Form.Label>
+            <Form.Control as="select" onChange={this.handleChange}>
+              <option>Select a user</option>
+              {typeof user !== "undefined" &&
+                Object.values(user).map(user => (
+                  <option key={user.id} value={user.id}>
+                    {user.name}
+                  </option>
+                ))}
+            </Form.Control>
+            <Button variant="primary" type="submit">
+              LOGIN
+            </Button>
+          </Form.Group>
+        </Form>
       </div>
     )
   }
