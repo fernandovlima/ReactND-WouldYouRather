@@ -19,7 +19,7 @@ const Question = ({ user, loading, props }) => {
             <p>... question info here ...</p>
           </div>
           <button
-            className="btn"
+            className="btn-default"
             label="View Poll"
             onClick={() => this.props.history.push("/")}
           >
