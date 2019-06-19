@@ -7,7 +7,7 @@ import { Button } from "react-bootstrap"
 
 class Dashboard extends Component {
   state = {
-    showAnsered: true
+    showAnswered: true
   }
 
   componentWillMount() {
@@ -19,18 +19,30 @@ class Dashboard extends Component {
     this.props.dispatch(getAllQuestionsAPI())
   }
 
-  handleClick = e => {
-    this.setState({
-      showAnswered: !e.target.value
-    })
-  }
+  handleClick = () =>
+    this.setState(oldState => ({
+      showAnswered: !oldState.showAnswered
+    }))
+
   render() {
     const { answers, unanswered } = this.props
 
     return (
-      <div>
-        <Button onClick={this.handleClick}>ANSWERED</Button>
-        <Button onClick={this.handleClick}>UNANSWERED</Button>
+      <div className="dashboard-question">
+        <Button
+          className="btn"
+          onClick={this.handleClick}
+          disabled={this.state.showAnswered}
+        >
+          ANSWERED
+        </Button>
+        <Button
+          className="btn"
+          onClick={this.handleClick}
+          disabled={!this.state.showAnswered}
+        >
+          UNANSWERED
+        </Button>
         {this.state.showAnswered ? (
           <QuestionPoll idQuestions={answers} />
         ) : (

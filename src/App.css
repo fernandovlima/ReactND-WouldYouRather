@@ -33,7 +33,9 @@
 }
 
 .login-container,
-.new-question-form {
+.new-question-form,
+.questions-list,
+.dashboard-qestion {
   width: 50%;
   height: 50%;
   margin: 0 auto;
@@ -42,4 +44,23 @@
 
 .btn {
   margin-top: 20px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+}
+
+.btn-question {
+  margin-left: 40%;
+}
+
+.question-info {
+  float: right;
+}
+
+.user-avatar {
+  float: left;
+}
+
+.question-wraper {
+  border: 1px solid black;
+  margin: 0 10;
 }

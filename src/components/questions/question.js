@@ -14,10 +14,9 @@ const Question = ({ user, loading, props }) => {
           <div className="user-avatar">
             <img src={user.avatarURL} alt="avatar" />
           </div>
-          <div className="question-info">
-            <h4>Would you rather</h4>
-            <p>... question info here ...</p>
-          </div>
+          <h5>Would you rather</h5>
+          <p>... question info here ...</p>
+
           <button
             className="btn-default"
             label="View Poll"
