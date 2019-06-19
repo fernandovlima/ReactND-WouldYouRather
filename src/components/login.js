@@ -29,23 +29,8 @@ class Login extends Component {
     console.log("USER AVATAR URL: ", user.avatarURL)
     return (
       <div className="login-container">
-        {/* <form onSubmit={this.handleSubmit}>
-          <label>
-            Select the user:
-            <select onChange={this.handleChange}>
-              <option>Select a user to login</option>
-              {typeof user !== "undefined" &&
-                Object.values(user).map(user => (
-                  <option key={user.id} value={user.id}>
-                    {user.name}
-                  </option>
-                ))}
-            </select>
-          </label>
-          <button className="btn" type="submit">
-            Login
-          </button>
-        </form> */}
+        <h5>Welcome to the Would you Rather APP !!</h5>
+        <p>Please sign in to continue</p>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>Would You Rather - Login in:</Form.Label>
@@ -58,7 +43,7 @@ class Login extends Component {
                   </option>
                 ))}
             </Form.Control>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" className="btn">
               LOGIN
             </Button>
           </Form.Group>
