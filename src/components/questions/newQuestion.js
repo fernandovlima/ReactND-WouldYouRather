@@ -10,7 +10,8 @@ const NewQuestion = () => {
         <Form.Group controlId="optionOne">
           <Form.Control type="text" placeholder="enter optin one text here" />
         </Form.Group>
-        <span>OR</span>
+        <p>OR</p>
+
         <Form.Group controlId="optionTwo">
           <Form.Control type="text" placeholder="enter optin two text here" />
         </Form.Group>
@@ -23,3 +24,5 @@ const NewQuestion = () => {
     </div>
   )
 }
+
+export default NewQuestion

@@ -6,12 +6,12 @@ const Header = () => {
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Would You Rather APP</Navbar.Brand>
+        <Navbar.Brand href="/">Would You Rather APP</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#features">HOME</Nav.Link>
-            <Nav.Link href="#pricing">NEW QUESTION</Nav.Link>
+            <Nav.Link href="/">HOME</Nav.Link>
+            <Nav.Link href="/new">NEW QUESTION</Nav.Link>
             <Nav.Link href="#pricing">LEADERBOARD</Nav.Link>
           </Nav>
         </Navbar.Collapse>

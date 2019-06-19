@@ -32,7 +32,8 @@
   }
 }
 
-.login-container {
+.login-container,
+.new-question-form {
   width: 50%;
   height: 50%;
   margin: 0 auto;
