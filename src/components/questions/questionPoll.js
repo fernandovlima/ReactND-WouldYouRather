@@ -4,7 +4,7 @@ import Questions from "./question"
 const QuestionPoll = props => {
   return (
     <div>
-      {Object.keys(props.idQuestions).map(question => (
+      {Object.values(props.idQuestions).map(question => (
         <Questions key={question} idQuestion={question} />
       ))}
     </div>

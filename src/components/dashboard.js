@@ -5,13 +5,18 @@ import { getAllQuestionsAPI } from "../actions/questions"
 import QuestionPoll from "./questions/questionPoll"
 
 class Dashboard extends Component {
+  componentWillMount() {
+    if (typeof this.props.authedUser === "undefined") {
+      this.props.history.push("/")
+    }
+  }
   componentDidMount() {
     this.props.dispatch(getAllQuestionsAPI())
   }
 
   render() {
     const { answers, unanswered } = this.props
-    console.log("TESTETESTEW: ", this.props.unanswered)
+
     return (
       <div>
         <QuestionPoll idQuestions={answers} />
@@ -31,8 +36,9 @@ const mapStateToProps = store => {
 
   return {
     authedUser: store.user.authedUser,
-    answers: user.answers,
-    unanswered
+    answers: typeof user !== "undefined" ? Object.keys(user.answers) : {},
+    unanswered,
+    user
   }
 }
 export default connect(mapStateToProps)(Dashboard)

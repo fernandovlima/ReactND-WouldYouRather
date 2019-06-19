@@ -5,7 +5,7 @@ const Question = ({ user, loading, props }) => {
   return (
     <div className="question-wraper">
       {loading ? (
-        "Loading..."
+        "Carregando..."
       ) : (
         <div>
           <div className="question-user">
