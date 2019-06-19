@@ -9,6 +9,7 @@ import Login from "./components/login"
 import Dashboard from "./components/dashboard"
 import Header from "./components/header/header"
 import NewQuestion from "./components/questions/newQuestion"
+import LeaderBoard from "./components/leaderboard/leaderBoard"
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
           <Route exact path="/" component={Login} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/new" component={NewQuestion} />
+          <Route path="/leaderboard" component={LeaderBoard} />
           {/* <div className="App">
             <h2>Would you rather?</h2>
           </div> */}
