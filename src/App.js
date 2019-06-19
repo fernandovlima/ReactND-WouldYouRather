@@ -7,6 +7,7 @@ import { LoadingBar } from "react-redux-loading-bar"
 //components
 import Login from "./components/login"
 import Dashboard from "./components/dashboard"
+import Header from "./components/header/header"
 
 class App extends Component {
   render() {
@@ -14,6 +15,8 @@ class App extends Component {
       <Router>
         <Fragment>
           <LoadingBar />
+          <Header />
+
           <Route exact path="/" component={Login} />
           <Route path="/dashboard" component={Dashboard} />
           {/* <div className="App">
