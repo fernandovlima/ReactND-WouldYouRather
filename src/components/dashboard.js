@@ -3,8 +3,13 @@ import { connect } from "react-redux"
 import { getAllQuestionsAPI } from "../actions/questions"
 //components
 import QuestionPoll from "./questions/questionPoll"
+import { Button } from "react-bootstrap"
 
 class Dashboard extends Component {
+  state = {
+    showAnsered: true
+  }
+
   componentWillMount() {
     if (typeof this.props.authedUser === "undefined") {
       this.props.history.push("/")
@@ -14,13 +19,23 @@ class Dashboard extends Component {
     this.props.dispatch(getAllQuestionsAPI())
   }
 
+  handleClick = e => {
+    this.setState({
+      showAnswered: !e.target.value
+    })
+  }
   render() {
     const { answers, unanswered } = this.props
 
     return (
       <div>
-        <QuestionPoll idQuestions={answers} />
-        <QuestionPoll idQuestions={unanswered} />
+        <Button onClick={this.handleClick}>ANSWERED</Button>
+        <Button onClick={this.handleClick}>UNANSWERED</Button>
+        {this.state.showAnswered ? (
+          <QuestionPoll idQuestions={answers} />
+        ) : (
+          <QuestionPoll idQuestions={unanswered} />
+        )}
       </div>
     )
   }
