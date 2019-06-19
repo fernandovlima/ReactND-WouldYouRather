@@ -1,7 +1,8 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 
-const Question = ({ user, loading, props }) => {
+const Question = ({ user, loading, question, ...props }) => {
   return (
     <div className="question-wraper">
       {loading ? (
@@ -17,13 +18,13 @@ const Question = ({ user, loading, props }) => {
           <h5>Would you rather</h5>
           <p>... question info here ...</p>
 
-          <button
-            className="btn-default"
+          <Link
+            className="btn btn-default"
             label="View Poll"
-            onClick={() => this.props.history.push("/")}
+            to={`/questions/${question.id}`}
           >
             View Poll
-          </button>
+          </Link>
         </div>
       )}
     </div>

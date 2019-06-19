@@ -10,6 +10,7 @@ import Dashboard from "./components/dashboard"
 import Header from "./components/header/header"
 import NewQuestion from "./components/questions/newQuestion"
 import LeaderBoard from "./components/leaderboard/leaderBoard"
+import AnswerQuestion from "./components/questions/answerQuestion"
 
 class App extends Component {
   render() {
@@ -23,6 +24,8 @@ class App extends Component {
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/new" component={NewQuestion} />
           <Route path="/leaderboard" component={LeaderBoard} />
+          <Route path="/questions/:question_id" component={AnswerQuestion} />
+
           {/* <div className="App">
             <h2>Would you rather?</h2>
           </div> */}
