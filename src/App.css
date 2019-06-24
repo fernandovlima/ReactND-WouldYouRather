@@ -60,6 +60,11 @@
   float: left;
 }
 
+.user-avatar img {
+  border-radius: 50%;
+  margin-left: 15px;
+}
+
 .question-wraper {
   border: 1px solid black;
   margin: 0 10;
