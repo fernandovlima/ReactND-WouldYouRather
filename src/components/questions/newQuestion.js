@@ -20,7 +20,7 @@ class NewQuestion extends Component {
   handleSubmit = e => {
     e.preventDefault()
     const { optionOne, optionTwo } = this.state
-    const { dispatch, id } = this.props
+    const { dispatch } = this.props
     dispatch(handleAddQuestion())
     this.setState({
       optionOne: "",
@@ -38,8 +38,9 @@ class NewQuestion extends Component {
           <Form.Group controlId="optionOne">
             <Form.Control
               type="text"
-              placeholder="enter optin one text here"
+              placeholder="enter option one text here"
               value={this.state.optionOne}
+              onChange={this.handleChange}
             />
           </Form.Group>
           <p>OR</p>
@@ -49,6 +50,7 @@ class NewQuestion extends Component {
               type="text"
               placeholder="enter optin two text here"
               value={this.state.optionTwo}
+              onChange={this.handleChange}
             />
           </Form.Group>
 
