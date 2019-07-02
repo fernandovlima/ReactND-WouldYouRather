@@ -1,12 +1,17 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { getAllQuestionsAPI } from "../../actions/questions"
 
 class AnswerQuestion extends Component {
   state = {}
   componentDidMount() {
-    console.log("props", this.props)
-    console.log("questionOK", this.props.questionOk)
-    console.log("id_question", this.props.id_question)
+    const questions = this.props.dispatch(getAllQuestionsAPI())
+    console.log("QUESTIONS", questions)
+    const questionOK = Object.values(questions).filter(
+      question => question.id === this.props.id_question
+    )
+    console.log("QUESTION OK", questionOK)
+    console.log("id do props", this.props.id_question)
   }
   render() {
     return <div>TESTE</div>
@@ -16,12 +21,10 @@ class AnswerQuestion extends Component {
 const mapStateToProps = (store, props) => {
   const questions = store
   const id_question = props.match.params.question_id
-  //const questionOk = questions.filter(question => question.id === id_question)
 
   return {
     questions,
     id_question
-    //questionOk
   }
 }
 export default connect(mapStateToProps)(AnswerQuestion)
