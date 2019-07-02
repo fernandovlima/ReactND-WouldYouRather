@@ -1,26 +1,27 @@
-import React from "react"
+import React, { Component } from "react"
 import { connect } from "react-redux"
 
-const AnswerQuestion = ({ props, questions }) => {
-  //const question_id = props.match.params.question_id
-  //console.log("id da questao", question_id)
-  console.log("props", props)
-
-  //   const question = questions.filter(id => {
-  //     if (id === question_id) {
-  //       return question
-  //     }
-  //   })
-
-  return <div>vc esta em {props.question_id}</div>
+class AnswerQuestion extends Component {
+  state = {}
+  componentDidMount() {
+    console.log("props", this.props)
+    console.log("questionOK", this.props.questionOk)
+    console.log("id_question", this.props.id_question)
+  }
+  render() {
+    return <div>TESTE</div>
+  }
 }
 
 const mapStateToProps = (store, props) => {
   const questions = store
   const id_question = props.match.params.question_id
+  //const questionOk = questions.filter(question => question.id === id_question)
+
   return {
     questions,
     id_question
+    //questionOk
   }
 }
 export default connect(mapStateToProps)(AnswerQuestion)
