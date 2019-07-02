@@ -4,27 +4,43 @@ import { getAllQuestionsAPI } from "../../actions/questions"
 
 class AnswerQuestion extends Component {
   state = {}
+
   componentDidMount() {
-    const questions = this.props.dispatch(getAllQuestionsAPI())
-    console.log("QUESTIONS", questions)
-    const questionOK = Object.values(questions).filter(
-      question => question.id === this.props.id_question
-    )
-    console.log("QUESTION OK", questionOK)
-    console.log("id do props", this.props.id_question)
+    this.props.dispatch(getAllQuestionsAPI())
   }
   render() {
-    return <div>TESTE</div>
+    const question = this.state.questionOK
+    console.log("question ok em props", question)
+    return (
+      <div>
+        {/* <div>
+          <div className="question-user">
+            <h5>{question.author} says...</h5>
+          </div>
+          <div className="user-avatar">
+            <img src={question.id} alt="avatar" />
+          </div>
+          <h5>Would you rather</h5>
+          <p>{question.optionOne}</p>
+          <p>OR</p>
+          <p>{question.optionTwo}</p>
+        </div> */}
+      </div>
+    )
   }
 }
 
 const mapStateToProps = (store, props) => {
-  const questions = store
-  const id_question = props.match.params.question_id
+  const { questions } = store
 
+  console.log("questions", questions)
+  const id_question = props.match.params.question_id
+  const questionOK = questions[id_question]
+  console.log("question em mapstate", questionOK)
   return {
     questions,
-    id_question
+    id_question,
+    questionOK
   }
 }
 export default connect(mapStateToProps)(AnswerQuestion)
