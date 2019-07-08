@@ -31,7 +31,7 @@
     transform: rotate(360deg);
   }
 }
-
+.container,
 .login-container,
 .new-question-form,
 .questions-list,

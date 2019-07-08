@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { getAllQuestionsAPI } from "../../actions/questions"
+import { Form, Button } from "react-bootstrap"
 
 class AnswerQuestion extends Component {
   componentDidMount() {
@@ -15,16 +16,27 @@ class AnswerQuestion extends Component {
     return (
       <div>
         {loading ? (
-          <div>
+          <div className="container">
             <div>
               <div className="question-user">
                 <h5>{question.author} says...</h5>
               </div>
 
               <h5>Would you rather</h5>
-              <p>{question.optionOne}</p>
-              <p>OR</p>
-              <p>{question.optionTwo}</p>
+              <Form>
+                <Form.Check
+                  type="radio"
+                  label={question.optionOne.text}
+                  id="questionOne"
+                />
+
+                <Form.Check
+                  type="radio"
+                  label={question.optionTwo.text}
+                  id="questionTwo"
+                />
+                <Button type="submit">SUBMIT</Button>
+              </Form>
             </div>
           </div>
         ) : (
@@ -43,7 +55,7 @@ const mapStateToProps = (store, props) => {
   const questionOK = questions[id_question]
   console.log("question em mapstate", questionOK)
 
-  const loading = questionOK !== "undefined" ? true : false
+  const loading = typeof questionOK !== "undefined" ? true : false
   return {
     questions,
     id_question,

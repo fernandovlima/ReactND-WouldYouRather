@@ -6,7 +6,7 @@ import QuestionPoll from "./questions/questionPoll"
 import { Button } from "react-bootstrap"
 
 class Dashboard extends Component {
-  state = {
+  state = { 
     showAnswered: true
   }
 
