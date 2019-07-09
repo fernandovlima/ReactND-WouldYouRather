@@ -31,7 +31,7 @@ class AnswerQuestion extends Component {
           <div className="container">
             <div>
               <div className="question-user">
-                <h5>{question.author} says...</h5>
+                <h5>{question.author} asks ...</h5>
               </div>
 
               <h5>Would you rather</h5>

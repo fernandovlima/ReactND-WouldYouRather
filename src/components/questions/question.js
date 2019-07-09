@@ -16,7 +16,7 @@ const Question = ({ user, loading, question, ...props }) => {
             <img src={user.avatarURL} alt="avatar" />
           </div>
           <h5>Would you rather</h5>
-          <p>... question info here ...</p>
+          <p>... {question.optionOne.text} ...</p>
 
           <Link
             className="btn btn-default"
