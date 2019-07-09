@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Form, Button } from "react-bootstrap"
 import { handleAddQuestion } from "../../actions/questions"
+import { connect } from "react-redux"
 
 class NewQuestion extends Component {
   state = {
@@ -64,4 +65,4 @@ class NewQuestion extends Component {
   }
 }
 
-export default NewQuestion
+export default connect()(NewQuestion)

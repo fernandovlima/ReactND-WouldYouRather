@@ -1,7 +1,8 @@
 import {
   ADD_QUESTION,
   GET_ALL_QUESTIONS,
-  GET_QUESTION
+  GET_QUESTION,
+  SAVE_QUESTION_ANSWER
 } from "../actions/questions"
 
 export default function questions(state = {}, action) {
@@ -20,6 +21,10 @@ export default function questions(state = {}, action) {
       return {
         ...state,
         [action.question.id]: action.payload
+      }
+    case SAVE_QUESTION_ANSWER:
+      return {
+        ...state
       }
     default:
       return state

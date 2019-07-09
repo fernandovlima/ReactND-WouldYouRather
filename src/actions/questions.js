@@ -5,6 +5,7 @@ import { showLoading, hideLoading } from "react-redux-loading-bar"
 export const GET_QUESTION = "GET_QUESTION"
 export const ADD_QUESTION = "ADD_QUESTION"
 export const GET_ALL_QUESTIONS = "GET_ALL_QUESTIONS"
+export const SAVE_QUESTION_ANSWER = "SAVE_QUESTION_ANSWER"
 
 export function getQuestion(question) {
   return {
@@ -30,6 +31,17 @@ export function getAllQuestions(questions) {
   }
 }
 
+export function saveQuestionAnswer(qid, user, answer) {
+  return {
+    type: SAVE_QUESTION_ANSWER,
+    payload: {
+      qid,
+      user,
+      answer
+    }
+  }
+}
+
 export function handleAddQuestion(question) {
   return (dispatch, getState) => {
     const { authedUser } = getState()
@@ -46,5 +58,12 @@ export function getAllQuestionsAPI() {
     return getQuestions()
       .then(questions => dispatch(getAllQuestions(questions)))
       .then(() => dispatch(hideLoading()))
+  }
+}
+
+export function handleSaveQuestionAnswer(qid, user, answer) {
+  return dispatch => {
+    dispatch(showLoading())
+    return
   }
 }
