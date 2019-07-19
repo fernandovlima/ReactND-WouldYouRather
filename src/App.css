@@ -31,6 +31,10 @@
     transform: rotate(360deg);
   }
 }
+.questions-list-container {
+  padding: 10px;
+}
+
 .container,
 .login-container,
 .new-question-form,

@@ -62,7 +62,7 @@ export function getAllQuestionsAPI() {
 }
 
 export function handleSaveQuestionAnswer(qid, user, answer) {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(showLoading())
     return
   }

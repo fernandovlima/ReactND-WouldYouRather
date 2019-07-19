@@ -8,15 +8,17 @@ const Question = ({ user, loading, question, ...props }) => {
       {loading ? (
         "Carregando..."
       ) : (
-        <div>
+        <div className="questions-list-container">
           <div className="question-user">
             <h5>{user.name} says...</h5>
           </div>
           <div className="user-avatar">
             <img src={user.avatarURL} alt="avatar" />
           </div>
-          <h5>Would you rather</h5>
-          <p>... {question.optionOne.text} ...</p>
+          <div className="question_info">
+            <h5>Would you rather</h5>
+            <p>... {question.optionOne.text} ...</p>
+          </div>
 
           <Link
             className="btn btn-default"
