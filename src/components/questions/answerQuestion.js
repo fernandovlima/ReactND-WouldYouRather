@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { getAllQuestionsAPI } from "../../actions/questions"
+import { getAllQuestionsAPI, saveQuestionAnswer } from "../../actions/questions"
 import { Form, Button } from "react-bootstrap"
 
 class AnswerQuestion extends Component {
@@ -17,7 +17,11 @@ class AnswerQuestion extends Component {
     })
   }
 
-  handleSubmit = e => {}
+  handleSubmit = e => {
+    // this.props.dispatch(saveQuestionAnswer())
+    console.log("SUBMIT: ", this.props)
+    console.log("ANSWER :", this.state.selectedOption)
+  }
 
   render() {
     const question =
@@ -66,7 +70,7 @@ class AnswerQuestion extends Component {
 }
 
 const mapStateToProps = (store, props) => {
-  const { questions } = store
+  const { questions, authedUser } = store
 
   console.log("questions", questions)
   const id_question = props.match.params.question_id
@@ -78,6 +82,7 @@ const mapStateToProps = (store, props) => {
     questions,
     id_question,
     questionOK,
+    authedUser,
     loading
   }
 }

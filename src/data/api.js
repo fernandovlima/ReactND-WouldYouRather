@@ -30,6 +30,6 @@ export function getQuestions() {
   }))
 }
 
-export function saveQuestionAqnswer(user, qid, answer) {
+export function saveQuestionAnswer(user, qid, answer) {
   return _saveQuestionAnswer(user, qid, answer)
 }
