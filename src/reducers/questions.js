@@ -24,7 +24,14 @@ export default function questions(state = {}, action) {
       }
     case SAVE_QUESTION_ANSWER:
       return {
-        ...state
+        ...state,
+        [action.question.id]: {
+          ...state[action.question.id],
+          [action.question.id.answer]: {
+            ...state[action.question.id][action.question.id.answer],
+            votes: questions[action.question.id][action.question.id.answer]
+          }
+        }
       }
     default:
       return state

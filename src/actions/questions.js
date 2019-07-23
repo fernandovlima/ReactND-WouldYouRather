@@ -65,7 +65,7 @@ export function getAllQuestionsAPI() {
   }
 }
 
-export function handleSaveQuestionAnswer(qid, user, answer) {
+export function handleSaveQuestionAnswer(user, qid, answer) {
   return (dispatch, getState) => {
     dispatch(showLoading())
     return saveQuestionAnswerAPI(user, qid, answer)

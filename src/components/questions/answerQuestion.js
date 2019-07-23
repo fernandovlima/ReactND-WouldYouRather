@@ -15,18 +15,21 @@ class AnswerQuestion extends Component {
   }
 
   handleOptionChange = e => {
-    this.setState({ selectedOption: e.target.value })
+    const value = e.target.value
+    this.setState({ selectedOption: value })
+    console.log("Answer: ", this.state.selectedOption)
+    console.log("VALUE ", e.target.value)
   }
   handleSubmit = e => {
     e.preventDefault()
-    console.log("SUBMIT: ", this.props)
     const { id_question, authedUser } = this.props
     const answer = this.state.selectedOption
+
     this.props.dispatch(
-      handleSaveQuestionAnswer(id_question, authedUser, answer)
+      handleSaveQuestionAnswer(authedUser, id_question, answer)
     )
+    console.log("ANSWER :", this.state.selectedOption)
     this.props.history.push("/dashboard")
-    // console.log("ANSWER :", this.state.selectedOption)
   }
 
   render() {
@@ -59,7 +62,7 @@ class AnswerQuestion extends Component {
                   type="radio"
                   value="optionTwo"
                   label={question.optionTwo.text}
-                  id="questionTwo"
+                  id="optionTwo"
                   checked={this.state.selectedOption === "optionTwo"}
                   onChange={this.handleOptionChange}
                 />
