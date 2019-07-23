@@ -1,33 +1,39 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { getAllQuestionsAPI, saveQuestionAnswer } from "../../actions/questions"
+import {
+  getAllQuestionsAPI,
+  handleSaveQuestionAnswer
+} from "../../actions/questions"
 import { Form, Button } from "react-bootstrap"
 
 class AnswerQuestion extends Component {
   state = {
-    selectedOption: "question1"
+    selectedOption: "optionOne"
   }
   componentDidMount() {
     this.props.dispatch(getAllQuestionsAPI())
   }
 
   handleOptionChange = e => {
-    this.setState({
-      selectedOption: e.target.value
-    })
+    this.setState({ selectedOption: e.target.value })
   }
-
   handleSubmit = e => {
-    // this.props.dispatch(saveQuestionAnswer())
+    e.preventDefault()
     console.log("SUBMIT: ", this.props)
-    console.log("ANSWER :", this.state.selectedOption)
+    const { id_question, authedUser } = this.props
+    const answer = this.state.selectedOption
+    this.props.dispatch(
+      handleSaveQuestionAnswer(id_question, authedUser, answer)
+    )
+    this.props.history.push("/dashboard")
+    // console.log("ANSWER :", this.state.selectedOption)
   }
 
   render() {
     const question =
       this.props.questionOK !== "undefined" ? this.props.questionOK : {}
-    console.log("question ok em props", question)
-    console.log("Loading em props", this.props.loading)
+    //console.log("question ok em props", question)
+    //console.log("Loading em props", this.props.loading)
     const loading = this.props.loading
     return (
       <div>
@@ -39,25 +45,27 @@ class AnswerQuestion extends Component {
               </div>
 
               <h5>Would you rather</h5>
-              <Form>
+              <Form onSubmit={this.handleSubmit}>
                 <Form.Check
                   type="radio"
                   label={question.optionOne.text}
-                  value="question1"
-                  id="questionOne"
-                  checked={this.state.selectedOption === "question1"}
+                  value="optionOne"
+                  id="optionOne"
+                  checked={this.state.selectedOption === "optionOne"}
                   onChange={this.handleOptionChange}
                 />
 
                 <Form.Check
                   type="radio"
-                  value="question2"
+                  value="optionTwo"
                   label={question.optionTwo.text}
                   id="questionTwo"
-                  checked={this.state.selectedOption === "question2"}
+                  checked={this.state.selectedOption === "optionTwo"}
                   onChange={this.handleOptionChange}
                 />
-                <Button type="submit">SUBMIT</Button>
+                <Button type="submit" onClick={this.handleSubmit}>
+                  SUBMIT
+                </Button>
               </Form>
             </div>
           </div>
@@ -70,12 +78,14 @@ class AnswerQuestion extends Component {
 }
 
 const mapStateToProps = (store, props) => {
-  const { questions, authedUser } = store
+  //console.log("Vendo Store em answerQuestion: ", store)
+  const { questions, user } = store
+  const { authedUser } = user
 
-  console.log("questions", questions)
+  //console.log("questions", questions)
   const id_question = props.match.params.question_id
   const questionOK = questions[id_question]
-  console.log("question em mapstate", questionOK)
+  //console.log("question em mapstate", questionOK)
 
   const loading = typeof questionOK !== "undefined" ? true : false
   return {

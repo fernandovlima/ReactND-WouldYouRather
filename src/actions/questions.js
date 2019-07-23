@@ -1,4 +1,8 @@
-import { saveQuestion, getQuestions } from "../data/api"
+import {
+  saveQuestion,
+  getQuestions,
+  saveQuestionAnswer as saveQuestionAnswerAPI
+} from "../data/api"
 //loading bar component from react-redux-loading-bar
 import { showLoading, hideLoading } from "react-redux-loading-bar"
 
@@ -31,7 +35,7 @@ export function getAllQuestions(questions) {
   }
 }
 
-export function saveQuestionAnswer(qid, user, answer) {
+export function saveQuestionAnswer({ qid, user, answer }) {
   return {
     type: SAVE_QUESTION_ANSWER,
     payload: {
@@ -64,6 +68,8 @@ export function getAllQuestionsAPI() {
 export function handleSaveQuestionAnswer(qid, user, answer) {
   return (dispatch, getState) => {
     dispatch(showLoading())
-    return
+    return saveQuestionAnswerAPI(user, qid, answer)
+      .then(saveQuestionAnswer({ qid, user, answer }))
+      .then(() => dispatch(hideLoading()))
   }
 }
