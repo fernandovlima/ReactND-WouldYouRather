@@ -30,7 +30,7 @@ export function getQuestions() {
   }))
 }
 
-export function saveQuestionAnswer(user, qid, answer) {
+export function saveQuestionAnswerAPI(user, qid, answer) {
   console.log("USER EM API", user)
   const data = {
     authedUser: user,

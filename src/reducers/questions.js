@@ -12,7 +12,6 @@ export default function questions(state = {}, action) {
         ...state
       }
     case GET_ALL_QUESTIONS:
-      console.log("QUESTION", action)
       return {
         ...state,
         ...action.payload.questions

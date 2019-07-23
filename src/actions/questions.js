@@ -1,8 +1,4 @@
-import {
-  saveQuestion,
-  getQuestions,
-  saveQuestionAnswer as saveQuestionAnswerAPI
-} from "../data/api"
+import { saveQuestion, getQuestions, saveQuestionAnswerAPI } from "../data/api"
 //loading bar component from react-redux-loading-bar
 import { showLoading, hideLoading } from "react-redux-loading-bar"
 
