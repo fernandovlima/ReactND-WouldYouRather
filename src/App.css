@@ -42,7 +42,7 @@
 .dashboard-qestion {
   width: 50%;
   height: 50%;
-  margin: 0 auto;
+  margin: auto;
   text-align: center;
 }
 
@@ -78,4 +78,18 @@
 
 .answer-btns {
   margin-left: 40%;
+}
+
+.form-check {
+  text-align: left;
+}
+
+.progress {
+  height: 30px;
+}
+
+.progress-bar.bg-info {
+  color: black;
+  font-size: 1.5em;
+  text-align: center;
 }

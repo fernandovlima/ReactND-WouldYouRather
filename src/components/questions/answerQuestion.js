@@ -54,7 +54,7 @@ class AnswerQuestion extends Component {
               {!this.state.isAnswered ? (
                 <div>
                   <div className="answer-option">
-                    <span>{question.optionOne.text}</span>
+                    <span>Would you rather {question.optionOne.text} ?</span>
                     <ProgressBar
                       now={question.optionOne.votes.length}
                       label={`${question.optionOne.votes.length}%`}
@@ -68,7 +68,7 @@ class AnswerQuestion extends Component {
                     </p>
                   </div>
                   <div className="answer-option">
-                    <span>{question.optionTwo.text}</span>
+                    <span>Would you rather {question.optionTwo.text} ? </span>
                     <ProgressBar
                       now={question.optionTwo.votes.length}
                       label={`${question.optionOne.votes.length}%`}
