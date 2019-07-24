@@ -70,6 +70,12 @@
 }
 
 .question-wraper {
-  border: 1px solid black;
+  border: 1px solid #007bff;
   margin: 0 10;
+  margin-bottom: 15px;
+  border-radius: 25px;
+}
+
+.answer-btns {
+  margin-left: 40%;
 }

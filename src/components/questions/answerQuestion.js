@@ -4,12 +4,14 @@ import {
   getAllQuestionsAPI,
   handleSaveQuestionAnswer
 } from "../../actions/questions"
-import { Form, Button } from "react-bootstrap"
+import { Form, Button, ProgressBar } from "react-bootstrap"
 
 class AnswerQuestion extends Component {
   state = {
-    selectedOption: "optionOne"
+    selectedOption: "optionOne",
+    isAnswered: true
   }
+
   componentDidMount() {
     this.props.dispatch(getAllQuestionsAPI())
   }
@@ -29,13 +31,14 @@ class AnswerQuestion extends Component {
       handleSaveQuestionAnswer(authedUser, id_question, answer)
     )
     console.log("ANSWER :", this.state.selectedOption)
-    this.props.history.push("/dashboard")
+    this.setState({ isAnswered: false })
+    //this.props.history.push("/dashboard")
   }
 
   render() {
     const question =
       this.props.questionOK !== "undefined" ? this.props.questionOK : {}
-    //console.log("question ok em props", question)
+    console.log("question ok em props", question)
     //console.log("Loading em props", this.props.loading)
     const loading = this.props.loading
     return (
@@ -48,28 +51,61 @@ class AnswerQuestion extends Component {
               </div>
 
               <h5>Would you rather</h5>
-              <Form onSubmit={this.handleSubmit}>
-                <Form.Check
-                  type="radio"
-                  label={question.optionOne.text}
-                  value="optionOne"
-                  id="optionOne"
-                  checked={this.state.selectedOption === "optionOne"}
-                  onChange={this.handleOptionChange}
-                />
+              {!this.state.isAnswered ? (
+                <div>
+                  <div className="answer-option">
+                    <span>{question.optionOne.text}</span>
+                    <ProgressBar
+                      now={question.optionOne.votes.length}
+                      label={`${question.optionOne.votes.length}%`}
+                      variant={this.state.isAnswered ? "success" : "info"}
+                    />
+                    <p>
+                      {question.optionOne.votes.length} of{" "}
+                      {question.optionOne.votes.length +
+                        question.optionTwo.votes.length}{" "}
+                      votes!
+                    </p>
+                  </div>
+                  <div className="answer-option">
+                    <span>{question.optionTwo.text}</span>
+                    <ProgressBar
+                      now={question.optionTwo.votes.length}
+                      label={`${question.optionOne.votes.length}%`}
+                      variant={this.state.isAnswered ? "success" : "info"}
+                    />
+                    <p>
+                      {question.optionOne.votes.length} of{" "}
+                      {question.optionOne.votes.length +
+                        question.optionTwo.votes.length}{" "}
+                      votes!
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <Form onSubmit={this.handleSubmit}>
+                  <Form.Check
+                    type="radio"
+                    label={question.optionOne.text}
+                    value="optionOne"
+                    id="optionOne"
+                    checked={this.state.selectedOption === "optionOne"}
+                    onChange={this.handleOptionChange}
+                  />
 
-                <Form.Check
-                  type="radio"
-                  value="optionTwo"
-                  label={question.optionTwo.text}
-                  id="optionTwo"
-                  checked={this.state.selectedOption === "optionTwo"}
-                  onChange={this.handleOptionChange}
-                />
-                <Button type="submit" onClick={this.handleSubmit}>
-                  SUBMIT
-                </Button>
-              </Form>
+                  <Form.Check
+                    type="radio"
+                    value="optionTwo"
+                    label={question.optionTwo.text}
+                    id="optionTwo"
+                    checked={this.state.selectedOption === "optionTwo"}
+                    onChange={this.handleOptionChange}
+                  />
+                  <Button type="submit" onClick={this.handleSubmit}>
+                    SUBMIT
+                  </Button>
+                </Form>
+              )}
             </div>
           </div>
         ) : (

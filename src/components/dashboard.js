@@ -6,7 +6,7 @@ import QuestionPoll from "./questions/questionPoll"
 import { Button } from "react-bootstrap"
 
 class Dashboard extends Component {
-  state = { 
+  state = {
     showAnswered: true
   }
 
@@ -29,20 +29,22 @@ class Dashboard extends Component {
 
     return (
       <div className="dashboard-question">
-        <Button
-          className="btn"
-          onClick={this.handleClick}
-          disabled={this.state.showAnswered}
-        >
-          ANSWERED
-        </Button>
-        <Button
-          className="btn"
-          onClick={this.handleClick}
-          disabled={!this.state.showAnswered}
-        >
-          UNANSWERED
-        </Button>
+        <div className="anwser-btns">
+          <Button
+            className="btn"
+            onClick={this.handleClick}
+            disabled={this.state.showAnswered}
+          >
+            ANSWERED
+          </Button>
+          <Button
+            className="btn"
+            onClick={this.handleClick}
+            disabled={!this.state.showAnswered}
+          >
+            UNANSWERED
+          </Button>
+        </div>
         {this.state.showAnswered ? (
           <QuestionPoll idQuestions={answers} />
         ) : (
