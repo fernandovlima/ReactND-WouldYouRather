@@ -47,12 +47,12 @@ class AnswerQuestion extends Component {
           <div className="container">
             <div>
               <div className="question-user">
-                <h5>{question.author} asks ...</h5>
+                <h5>Asked by {question.author} </h5>
               </div>
 
               <h5>Would you rather</h5>
               {!this.state.isAnswered ? (
-                <div>
+                <div className="answered-question">
                   <div className="answer-option">
                     <span>Would you rather {question.optionOne.text} ?</span>
                     <ProgressBar

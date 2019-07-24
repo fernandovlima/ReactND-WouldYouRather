@@ -69,11 +69,16 @@
   margin-left: 15px;
 }
 
-.question-wraper {
-  border: 1px solid #007bff;
-  margin: 0 10;
+.question-wraper,
+.answered-question,
+.container,
+.login-container {
+  border: 2px solid #007bff;
+  margin: auto;
+  margin-top: 20px;
   margin-bottom: 15px;
   border-radius: 25px;
+  padding: 20px;
 }
 
 .answer-btns {
