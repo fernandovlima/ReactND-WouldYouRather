@@ -22,13 +22,14 @@ export default function questions(state = {}, action) {
         [action.question.id]: action.payload
       }
     case SAVE_QUESTION_ANSWER:
+      const { qid, answer, user } = action.payload
       return {
         ...state,
-        [action.question.id]: {
-          ...state[action.question.id],
-          [action.question.id.answer]: {
-            ...state[action.question.id][action.question.id.answer],
-            votes: questions[action.question.id][action.question.id.answer]
+        [qid]: {
+          ...state[qid],
+          [answer]: {
+            ...state[qid][answer],
+            votes: state[qid][answer].votes.concat([user])
           }
         }
       }

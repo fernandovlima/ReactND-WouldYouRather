@@ -65,7 +65,8 @@ export function handleSaveQuestionAnswer(user, qid, answer) {
   return (dispatch, getState) => {
     dispatch(showLoading())
     return saveQuestionAnswerAPI(user, qid, answer)
-      .then(saveQuestionAnswer({ qid, user, answer }))
+      .then(dispatch(saveQuestionAnswer({ qid, user, answer })))
       .then(() => dispatch(hideLoading()))
+      .then(teste => console.log("teste action question", teste))
   }
 }

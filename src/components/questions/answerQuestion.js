@@ -30,7 +30,7 @@ class AnswerQuestion extends Component {
     this.props.dispatch(
       handleSaveQuestionAnswer(authedUser, id_question, answer)
     )
-    console.log("ANSWER :", this.state.selectedOption)
+    //console.log("ANSWER :", this.state.selectedOption)
     this.setState({ isAnswered: false })
     //this.props.history.push("/dashboard")
   }
