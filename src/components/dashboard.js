@@ -11,12 +11,14 @@ class Dashboard extends Component {
   }
 
   componentWillMount() {
+    
     if (typeof this.props.authedUser === "undefined") {
       this.props.history.push("/")
     }
   }
   componentDidMount() {
     this.props.dispatch(getAllQuestionsAPI())
+    
   }
 
   handleClick = () =>

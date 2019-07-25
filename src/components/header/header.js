@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
-import { Nav, Navbar, NavDropdown } from "react-bootstrap"
+import { Nav, Navbar } from "react-bootstrap"
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -10,9 +11,9 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/dashboard">HOME</Nav.Link>
-            <Nav.Link href="/add">NEW QUESTION</Nav.Link>
-            <Nav.Link href="/leaderboard">LEADERBOARD</Nav.Link>
+            <NavLink to="/dashboard">HOME</NavLink>
+            <NavLink to="/add">NEW QUESTION</NavLink>
+            <NavLink to="/leaderboard">LEADERBOARD</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

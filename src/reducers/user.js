@@ -4,7 +4,7 @@ import { SAVE_QUESTION_ANSWER } from "../actions/questions"
 export default function user(state = {}, action) {
   switch (action.type) {
     case SET_AUTHED_USER:
-      console.log("TESTE DE STATE: ", action)
+      //console.log("TESTE DE STATE: ", action)
       return {
         ...state,
         authedUser: action.payload
