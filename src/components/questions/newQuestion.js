@@ -13,20 +13,17 @@ class NewQuestion extends Component {
     const option = e.target.value
 
     this.setState({
-      optionOne: option,
-      optionTwo: option
+      ...this.state,
+      [e.target.name]: option
     })
+    //console.log(this.state)
   }
 
   handleSubmit = e => {
     e.preventDefault()
-    const { optionOne, optionTwo } = this.state
+
     const { dispatch } = this.props
-    dispatch(handleAddQuestion())
-    this.setState({
-      optionOne: "",
-      optionTwo: ""
-    })
+    //dispatch(handleAddQuestion())
   }
 
   render() {
@@ -39,6 +36,7 @@ class NewQuestion extends Component {
           <Form.Group controlId="optionOne">
             <Form.Control
               type="text"
+              name="optionOne"
               placeholder="enter option one text here"
               value={this.state.optionOne}
               onChange={this.handleChange}
@@ -49,6 +47,7 @@ class NewQuestion extends Component {
           <Form.Group controlId="optionTwo">
             <Form.Control
               type="text"
+              name="optionTwo"
               placeholder="enter optin two text here"
               value={this.state.optionTwo}
               onChange={this.handleChange}
@@ -65,4 +64,12 @@ class NewQuestion extends Component {
   }
 }
 
-export default connect()(NewQuestion)
+const mapStateToProps = (store, props) => {
+  const { user } = store
+  const { authedUser } = user
+  return {
+    authedUser
+  }
+}
+
+export default connect(mapStateToProps)(NewQuestion)

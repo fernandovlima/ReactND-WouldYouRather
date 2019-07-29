@@ -5,6 +5,7 @@ import {
   handleSaveQuestionAnswer
 } from "../../actions/questions"
 import { Form, Button, ProgressBar } from "react-bootstrap"
+import { id } from "postcss-selector-parser"
 
 class AnswerQuestion extends Component {
   state = {
@@ -117,14 +118,18 @@ class AnswerQuestion extends Component {
 }
 
 const mapStateToProps = (store, props) => {
-  //console.log("Vendo Store em answerQuestion: ", store)
   const { questions, user } = store
   const { authedUser } = user
 
-  //console.log("questions", questions)
   const id_question = props.match.params.question_id
   const questionOK = questions[id_question]
-  //console.log("question em mapstate", questionOK)
+  console.log("USER EM MAPSTATE", user)
+  console.log(user.answers)
+  const answerByUser = Object.values(user).map(
+    user => user.answers === id_question
+  )
+
+  console.log("ANSWER BY USER ", answerByUser)
 
   const loading = typeof questionOK !== "undefined" ? true : false
   return {

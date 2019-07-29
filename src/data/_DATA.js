@@ -179,7 +179,7 @@ export function _saveQuestion(question) {
 }
 
 export function _saveQuestionAnswer({ authedUser, qid, answer }) {
-  console.log("USER EM DATA", authedUser)
+  //console.log("USER EM DATA", authedUser)
 
   return new Promise((res, rej) => {
     setTimeout(() => {

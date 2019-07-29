@@ -31,7 +31,6 @@ export function getQuestions() {
 }
 
 export function saveQuestionAnswerAPI(user, qid, answer) {
-  console.log("USER EM API", user)
   const data = {
     authedUser: user,
     qid,
