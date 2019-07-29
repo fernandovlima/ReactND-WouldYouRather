@@ -31,16 +31,13 @@ class AnswerQuestion extends Component {
     this.props.dispatch(
       handleSaveQuestionAnswer(authedUser, id_question, answer)
     )
-    //console.log("ANSWER :", this.state.selectedOption)
     this.setState({ isAnswered: false })
-    //this.props.history.push("/dashboard")
   }
 
   render() {
     const question =
       this.props.questionOK !== "undefined" ? this.props.questionOK : {}
     console.log("question ok em props", question)
-    //console.log("Loading em props", this.props.loading)
     const loading = this.props.loading
     return (
       <div>

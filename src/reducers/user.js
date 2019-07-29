@@ -32,7 +32,7 @@ export default function user(state = {}, action) {
         ...state,
         [authedUser]: {
           ...state[authedUser],
-          questions: state[authedUser].questions.concat([action.id])
+          questions: state[authedUser].questions.concat([action.payload.id])
         }
       }
     default:
