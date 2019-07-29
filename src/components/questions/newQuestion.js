@@ -10,6 +10,7 @@ class NewQuestion extends Component {
     authedUser: this.props.authedUser
   }
 
+  //handle inputs changes
   handleChange = e => {
     const option = e.target.value
 
@@ -20,6 +21,7 @@ class NewQuestion extends Component {
     //console.log(this.state)
   }
 
+  //handle form submit for add a new question
   handleSubmit = e => {
     e.preventDefault()
     const newQuestion = {
@@ -78,10 +80,11 @@ class NewQuestion extends Component {
 }
 
 const mapStateToProps = (store, props) => {
-  const { user } = store
+  const { user, questions } = store
   const { authedUser } = user
   return {
-    authedUser
+    authedUser,
+    questions
   }
 }
 
