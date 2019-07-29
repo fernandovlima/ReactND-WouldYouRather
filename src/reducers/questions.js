@@ -9,7 +9,8 @@ export default function questions(state = {}, action) {
   switch (action.type) {
     case ADD_QUESTION:
       return {
-        ...state
+        ...state,
+        [action.payload.id]: action.payload
       }
     case GET_ALL_QUESTIONS:
       return {

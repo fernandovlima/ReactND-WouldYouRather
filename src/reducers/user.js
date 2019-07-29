@@ -1,5 +1,5 @@
 import { SET_AUTHED_USER, GET_ALL_USERS } from "../actions/user"
-import { SAVE_QUESTION_ANSWER } from "../actions/questions"
+import { SAVE_QUESTION_ANSWER, ADD_QUESTION } from "../actions/questions"
 
 export default function user(state = {}, action) {
   switch (action.type) {
@@ -24,6 +24,15 @@ export default function user(state = {}, action) {
             ...state[user].answers,
             [qid]: answer
           }
+        }
+      }
+    case ADD_QUESTION:
+      const { authedUser } = action.payload
+      return {
+        ...state,
+        [authedUser]: {
+          ...state[authedUser],
+          questions: state[authedUser].questions.concat([action.id])
         }
       }
     default:

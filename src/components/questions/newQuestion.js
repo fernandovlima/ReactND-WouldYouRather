@@ -6,7 +6,8 @@ import { connect } from "react-redux"
 class NewQuestion extends Component {
   state = {
     optionOne: "",
-    optionTwo: ""
+    optionTwo: "",
+    authedUser: this.props.authedUser
   }
 
   handleChange = e => {
@@ -21,9 +22,21 @@ class NewQuestion extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
+    const newQuestion = {
+      author: this.state.authedUser,
+      id: "",
+      optionOne: {
+        votes: [],
+        text: this.state.optionOne
+      },
+      optionTwo: {
+        votes: [],
+        text: this.state.optionTwo
+      }
+    }
 
     const { dispatch } = this.props
-    //dispatch(handleAddQuestion())
+    dispatch(handleAddQuestion(newQuestion))
   }
 
   render() {
