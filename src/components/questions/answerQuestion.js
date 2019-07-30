@@ -117,17 +117,22 @@ class AnswerQuestion extends Component {
 const mapStateToProps = (store, props) => {
   const { questions, user } = store
   const { authedUser } = user
+  console.log("user", user)
+  const { answers } = typeof user !== "undefined" ? user : {}
 
   const id_question = props.match.params.question_id
   const questionOK = questions[id_question]
-  console.log("USER EM MAPSTATE", user)
-  console.log(user.answers)
+  // console.log("USER EM MAPSTATE", user)
+  console.log("answers", answers)
 
-  const answerByUser = Object.values(user).map(
-    user => user.answers === id_question
-  )
+  // // const answerByUser = Object.values(user).map(
+  // //   user => user.answers === id_question
+  // // )
+  // console.log("respostas: ", answers)
+  // const answerByUser =
+  //   typeof user !== "undefined" || Object.values(answers).includes(id_question)
 
-  console.log("ANSWER BY USER ", answerByUser)
+  //console.log("ANSWER BY USER ", answerByUser)
 
   const loading = typeof questionOK !== "undefined" ? true : false
   return {

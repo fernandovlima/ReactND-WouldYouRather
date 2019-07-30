@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react"
 import "./App.css"
 import { connect } from "react-redux"
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 //loading bar component from react-redux-loading-bar
 import { LoadingBar } from "react-redux-loading-bar"
 //components
@@ -11,7 +11,7 @@ import Header from "./components/header/header"
 import NewQuestion from "./components/questions/newQuestion"
 import LeaderBoard from "./components/leaderboard/leaderBoard"
 import AnswerQuestion from "./components/questions/answerQuestion"
-
+import NoMatchPage from "./components/404 page/noMatchPage"
 class App extends Component {
   render() {
     return (
@@ -20,15 +20,14 @@ class App extends Component {
           <LoadingBar />
           <Header />
 
-          <Route exact path="/" component={Login} />
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/add" component={NewQuestion} />
-          <Route path="/leaderboard" component={LeaderBoard} />
-          <Route path="/questions/:question_id" component={AnswerQuestion} />
-
-          {/* <div className="App">
-            <h2>Would you rather?</h2>
-          </div> */}
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/add" component={NewQuestion} />
+            <Route exact path="/leaderboard" component={LeaderBoard} />
+            <Route path="/questions/:question_id" component={AnswerQuestion} />
+            <Route component={NoMatchPage} />
+          </Switch>
         </Fragment>
       </Router>
     )

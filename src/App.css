@@ -39,7 +39,8 @@
 .login-container,
 .new-question-form,
 .questions-list,
-.dashboard-qestion {
+.dashboard-qestion,
+.page404 {
   width: 50%;
   height: 50%;
   margin: auto;
@@ -72,7 +73,8 @@
 .question-wraper,
 .answered-question,
 .container,
-.login-container {
+.login-container,
+.page404 {
   border: 2px solid #007bff;
   margin: auto;
   margin-top: 20px;
