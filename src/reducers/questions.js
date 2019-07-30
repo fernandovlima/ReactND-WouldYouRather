@@ -10,7 +10,7 @@ export default function questions(state = {}, action) {
     case ADD_QUESTION:
       return {
         ...state,
-        [action.payload.id]: action.payload
+        [action.payload.question.id]: action.payload.question
       }
     case GET_ALL_QUESTIONS:
       return {

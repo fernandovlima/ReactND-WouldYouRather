@@ -27,12 +27,14 @@ export default function user(state = {}, action) {
         }
       }
     case ADD_QUESTION:
-      const { authedUser } = action.payload
+      console.log("payload", action.payload)
+      const { question } = action.payload
+      const { author, id } = question
       return {
         ...state,
-        [authedUser]: {
-          ...state[authedUser],
-          questions: state[authedUser].questions.concat([action.payload.id])
+        [author]: {
+          ...state[author],
+          questions: state[author].questions.concat([id])
         }
       }
     default:

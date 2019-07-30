@@ -3,6 +3,7 @@ import { showLoading, hideLoading } from "react-redux-loading-bar"
 
 export const SET_AUTHED_USER = "SET_AUTHED_USER"
 export const GET_ALL_USERS = "GET_ALL_USERS"
+export const SET_USER_QUESTION = "SET_USER_QUESTION"
 
 export function setAuthedUser(id) {
   return {
@@ -15,6 +16,13 @@ export function getAllUsers(users) {
   return {
     type: GET_ALL_USERS,
     payload: users
+  }
+}
+
+export function addUserQuestion({ idUser, idQuestion }) {
+  return {
+    type: SET_USER_QUESTION,
+    payload: { idQuestion, idUser }
   }
 }
 

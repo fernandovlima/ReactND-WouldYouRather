@@ -1,7 +1,7 @@
 import { saveQuestion, getQuestions, saveQuestionAnswerAPI } from "../data/api"
 //loading bar component from react-redux-loading-bar
 import { showLoading, hideLoading } from "react-redux-loading-bar"
-
+import { addUserQuestion } from "../actions/user"
 export const GET_QUESTION = "GET_QUESTION"
 export const ADD_QUESTION = "ADD_QUESTION"
 export const GET_ALL_QUESTIONS = "GET_ALL_QUESTIONS"
@@ -14,12 +14,11 @@ export function getQuestion(question) {
   }
 }
 
-export function addQuestion(question, user) {
+export function addQuestion(question) {
   return {
     type: ADD_QUESTION,
     payload: {
-      question,
-      user
+      question
     }
   }
 }
@@ -47,7 +46,7 @@ export function handleAddQuestion(question) {
     const { authedUser } = getState()
     dispatch(showLoading())
     return saveQuestion(question)
-      .then(question => dispatch(addQuestion(question, authedUser)))
+      .then(question => dispatch(addQuestion(question)))
       .then(() => dispatch(hideLoading()))
   }
 }

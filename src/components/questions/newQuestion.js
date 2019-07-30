@@ -6,17 +6,18 @@ import { connect } from "react-redux"
 class NewQuestion extends Component {
   state = {
     optionOne: "",
-    optionTwo: "",
-    authedUser: this.props.authedUser
+    optionTwo: ""
+    // authedUser: this.props.authedUser
   }
 
   //handle inputs changes
   handleChange = e => {
-    const option = e.target.value
+    // const option = e.target.value
+    const { name, value } = e.target
 
     this.setState({
-      ...this.state,
-      [e.target.name]: option
+      // ...this.state,
+      [name]: value
     })
     //console.log(this.state)
   }
@@ -24,20 +25,16 @@ class NewQuestion extends Component {
   //handle form submit for add a new question
   handleSubmit = e => {
     e.preventDefault()
+
+    // optionOneText, optionTwoText, author
     const newQuestion = {
-      author: this.state.authedUser,
-      id: "",
-      optionOne: {
-        votes: [],
-        text: this.state.optionOne
-      },
-      optionTwo: {
-        votes: [],
-        text: this.state.optionTwo
-      }
+      optionOneText: this.state.optionOne,
+      optionTwoText: this.state.optionTwo,
+      author: this.props.authedUser
     }
 
     const { dispatch } = this.props
+    console.log("handle submit", newQuestion)
     dispatch(handleAddQuestion(newQuestion))
   }
 
@@ -47,7 +44,7 @@ class NewQuestion extends Component {
         <h2>Create the Question</h2>
         <p>complete the question:</p>
         <h5>Would you rather?</h5>
-        <Form onClick={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="optionOne">
             <Form.Control
               type="text"

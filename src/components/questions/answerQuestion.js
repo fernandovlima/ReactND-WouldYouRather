@@ -122,6 +122,7 @@ const mapStateToProps = (store, props) => {
   const questionOK = questions[id_question]
   console.log("USER EM MAPSTATE", user)
   console.log(user.answers)
+
   const answerByUser = Object.values(user).map(
     user => user.answers === id_question
   )
