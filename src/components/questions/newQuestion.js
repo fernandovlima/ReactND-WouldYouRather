@@ -36,41 +36,44 @@ class NewQuestion extends Component {
     const { dispatch } = this.props
     console.log("handle submit", newQuestion)
     dispatch(handleAddQuestion(newQuestion))
+    this.props.history.push("/dashboard")
   }
 
   render() {
     return (
-      <div className="new-question-form">
-        <h2>Create the Question</h2>
-        <p>complete the question:</p>
-        <h5>Would you rather?</h5>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="optionOne">
-            <Form.Control
-              type="text"
-              name="optionOne"
-              placeholder="enter option one text here"
-              value={this.state.optionOne}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <p>OR</p>
+      <div className="new-question-wraper">
+        <div className="new-question-form">
+          <h2>Create the Question</h2>
+          <p>complete the question:</p>
+          <h5>Would you rather?</h5>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group controlId="optionOne">
+              <Form.Control
+                type="text"
+                name="optionOne"
+                placeholder="enter option one text here"
+                value={this.state.optionOne}
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <p>OR</p>
 
-          <Form.Group controlId="optionTwo">
-            <Form.Control
-              type="text"
-              name="optionTwo"
-              placeholder="enter optin two text here"
-              value={this.state.optionTwo}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
+            <Form.Group controlId="optionTwo">
+              <Form.Control
+                type="text"
+                name="optionTwo"
+                placeholder="enter optin two text here"
+                value={this.state.optionTwo}
+                onChange={this.handleChange}
+              />
+            </Form.Group>
 
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-         
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+           
+        </div>
       </div>
     )
   }
