@@ -7,7 +7,7 @@ import { Button } from "react-bootstrap"
 
 class Dashboard extends Component {
   state = {
-    showAnswered: true
+    showAnswered: false
   }
 
   componentWillMount() {
