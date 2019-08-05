@@ -5,12 +5,10 @@ import {
   handleSaveQuestionAnswer
 } from "../../actions/questions"
 import { Form, Button, ProgressBar } from "react-bootstrap"
-import { id } from "postcss-selector-parser"
 
 class AnswerQuestion extends Component {
   state = {
-    selectedOption: "optionOne",
-    isAnswered: true
+    selectedOption: "optionOne"
   }
 
   componentDidMount() {
@@ -20,8 +18,6 @@ class AnswerQuestion extends Component {
   handleOptionChange = e => {
     const value = e.target.value
     this.setState({ selectedOption: value })
-    console.log("Answer: ", this.state.selectedOption)
-    console.log("VALUE ", e.target.value)
   }
   handleSubmit = e => {
     e.preventDefault()
@@ -31,60 +27,54 @@ class AnswerQuestion extends Component {
     this.props.dispatch(
       handleSaveQuestionAnswer(authedUser, id_question, answer)
     )
-    this.setState({ isAnswered: false })
   }
 
   render() {
-    const question =
-      this.props.questionOK !== "undefined" ? this.props.questionOK : {}
-    console.log("question ok em props", question)
-    const loading = this.props.loading
+    const {
+      questionOK,
+      isAnswered,
+      voteOne,
+      voteTwo,
+      voteTotal,
+      loading
+    } = this.props
+
     return (
       <div>
-        {loading ? (
+        {!loading ? (
           <div className="container">
             <div>
               <div className="question-user">
-                <h5>Asked by {question.author} </h5>
+                <h5>Asked by {questionOK.author} </h5>
               </div>
 
               <h5>Would you rather</h5>
-              {!this.state.isAnswered ? (
+              {isAnswered ? (
                 <div className="answered-question">
                   <div className="answer-option">
-                    <span>Would you rather {question.optionOne.text} ?</span>
+                    <span>Would you rather {questionOK.optionOne.text} ?</span>
                     <ProgressBar
-                      now={question.optionOne.votes.length}
-                      label={`${question.optionOne.votes.length}%`}
-                      variant={this.state.isAnswered ? "success" : "info"}
+                      now={(voteOne / voteTotal) * 100}
+                      label={`${Math.floor((voteOne / voteTotal) * 100)}%`}
+                      variant={isAnswered ? "success" : "info"}
                     />
-                    <p>
-                      {question.optionOne.votes.length} of{" "}
-                      {question.optionOne.votes.length +
-                        question.optionTwo.votes.length}{" "}
-                      votes!
-                    </p>
+                    <p>{`${voteOne} of ${voteTotal} votes!`}</p>
                   </div>
                   <div className="answer-option">
-                    <span>Would you rather {question.optionTwo.text} ? </span>
+                    <span>Would you rather {questionOK.optionTwo.text} ? </span>
                     <ProgressBar
-                      now={question.optionTwo.votes.length}
-                      label={`${question.optionOne.votes.length}%`}
-                      variant={this.state.isAnswered ? "success" : "info"}
+                      now={(voteTwo / voteTotal) * 100}
+                      label={`${Math.floor((voteTwo / voteTotal) * 100)}%`}
+                      variant={isAnswered ? "success" : "info"}
                     />
-                    <p>
-                      {question.optionOne.votes.length} of{" "}
-                      {question.optionOne.votes.length +
-                        question.optionTwo.votes.length}{" "}
-                      votes!
-                    </p>
+                    <p>{`${voteTwo} of ${voteTotal} votes!`}</p>
                   </div>
                 </div>
               ) : (
                 <Form onSubmit={this.handleSubmit}>
                   <Form.Check
                     type="radio"
-                    label={question.optionOne.text}
+                    label={questionOK.optionOne.text}
                     value="optionOne"
                     id="optionOne"
                     checked={this.state.selectedOption === "optionOne"}
@@ -94,7 +84,7 @@ class AnswerQuestion extends Component {
                   <Form.Check
                     type="radio"
                     value="optionTwo"
-                    label={question.optionTwo.text}
+                    label={questionOK.optionTwo.text}
                     id="optionTwo"
                     checked={this.state.selectedOption === "optionTwo"}
                     onChange={this.handleOptionChange}
@@ -117,29 +107,31 @@ class AnswerQuestion extends Component {
 const mapStateToProps = (store, props) => {
   const { questions, user } = store
   const { authedUser } = user
-  console.log("user", user)
-  const { answers } = typeof user !== "undefined" ? user : {}
 
   const id_question = props.match.params.question_id
   const questionOK = questions[id_question]
-  // console.log("USER EM MAPSTATE", user)
-  console.log("answers", answers)
 
-  // // const answerByUser = Object.values(user).map(
-  // //   user => user.answers === id_question
-  // // )
-  // console.log("respostas: ", answers)
-  // const answerByUser =
-  //   typeof user !== "undefined" || Object.values(answers).includes(id_question)
+  const { answers } = typeof user !== "undefined" ? user[authedUser] : {}
+  const loading = typeof questionOK === "undefined" ? true : false
 
-  //console.log("ANSWER BY USER ", answerByUser)
+  let voteOne,
+    voteTwo,
+    voteTotal = 0
+  if (!loading) {
+    voteOne = questionOK.optionOne.votes.length
+    voteTwo = questionOK.optionTwo.votes.length
+    voteTotal = voteOne + voteTwo
+  }
 
-  const loading = typeof questionOK !== "undefined" ? true : false
   return {
     questions,
     id_question,
     questionOK,
     authedUser,
+    voteOne,
+    voteTwo,
+    voteTotal,
+    isAnswered: typeof answers[id_question] !== "undefined" ? true : false,
     loading
   }
 }
