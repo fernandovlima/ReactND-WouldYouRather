@@ -1,5 +1,6 @@
-import { SET_AUTHED_USER, GET_ALL_USERS } from "../actions/user"
+import { SET_AUTHED_USER, GET_ALL_USERS, LOGOUT } from "../actions/user"
 import { SAVE_QUESTION_ANSWER, ADD_QUESTION } from "../actions/questions"
+import { Store } from "tough-cookie"
 
 export default function user(state = {}, action) {
   switch (action.type) {
@@ -9,6 +10,7 @@ export default function user(state = {}, action) {
         ...state,
         authedUser: action.payload
       }
+
     case GET_ALL_USERS:
       return {
         ...state,
@@ -37,6 +39,12 @@ export default function user(state = {}, action) {
           questions: state[author].questions.concat([id])
         }
       }
+    case LOGOUT:
+      const { authedUser, newUsers: ...user } = state 
+      return {
+        user
+      }
+
     default:
       return state
   }
