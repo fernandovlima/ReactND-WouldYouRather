@@ -1,4 +1,4 @@
-import { getUsers } from "../data/api"
+import { getUsers, setLogin } from "../data/api"
 import { showLoading, hideLoading } from "react-redux-loading-bar"
 
 export const SET_AUTHED_USER = "SET_AUTHED_USER"
@@ -30,6 +30,15 @@ export function addUserQuestion({ idUser, idQuestion }) {
   return {
     type: SET_USER_QUESTION,
     payload: { idQuestion, idUser }
+  }
+}
+
+export function login(id) {
+  return dispatch => {
+    dispatch(showLoading())
+    return setLogin(id)
+      .then(id => dispatch(setAuthedUser(id)))
+      .then(() => dispatch(hideLoading()))
   }
 }
 

@@ -126,6 +126,17 @@ function generateUID() {
   )
 }
 
+export function _setLogin(id) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      const authedUser = users[id]
+
+      res(typeof authedUser === 'undefined' ? 'undefined' : authedUser.id )
+      rej(null)
+    }, 1000)
+  })
+}
+
 export function _getUsers() {
   return new Promise((res, rej) => {
     setTimeout(() => res({ ...users }), 1000)

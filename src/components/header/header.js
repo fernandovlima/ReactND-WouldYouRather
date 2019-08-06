@@ -2,12 +2,11 @@ import React from "react"
 import { connect } from "react-redux"
 import { Nav, Navbar } from "react-bootstrap"
 import { NavLink } from "react-router-dom"
-import { setAuthedUser } from "../../actions/user"
+import { logout } from "../../actions/user"
 
-const Header = ({ authedUser, ...props }) => {
+const Header = ({ authedUser, dispatch, history }) => {
   const handleLogout = () => {
-    props.dispatch(setAuthedUser(""))
-    this.props.history.push("/dashboard")
+    dispatch(logout())
   }
   return (
     <div>

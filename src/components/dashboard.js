@@ -10,12 +10,11 @@ class Dashboard extends Component {
     showAnswered: false
   }
 
-  componentWillMount() {
-    if (typeof this.props.authedUser === "undefined") {
+  componentDidMount() {
+    const { authedUser } = this.props
+    if (typeof authedUser === "undefined") {
       this.props.history.push("/")
     }
-  }
-  componentDidMount() {
     this.props.dispatch(getAllQuestionsAPI())
   }
 
@@ -55,14 +54,14 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store, props) => {
   const { authedUser } = store.user
   const { questions } = store
   const user = store.user[authedUser]
+  const isAuthed = typeof user === "undefined" ? false : true
   const unanswered = Object.keys(questions).filter(
     id => typeof user.answers[id] === "undefined"
   )
-
   return {
     authedUser: store.user.authedUser,
     answers: typeof user !== "undefined" ? Object.keys(user.answers) : {},
