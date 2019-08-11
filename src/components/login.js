@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAllUser, setAuthedUser } from '../actions/user';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 
 class Login extends Component {
   state = {
-    user: ''
+    user: '',
+    hasUser: true
   };
 
   componentDidMount() {
@@ -17,6 +18,9 @@ class Login extends Component {
       this.props.dispatch(setAuthedUser(this.state.user));
       this.props.history.push('/dashboard');
     }
+    this.setState({
+      hasUser: false
+    });
   };
 
   handleChange = event => {
@@ -49,6 +53,9 @@ class Login extends Component {
             </Button>
           </Form.Group>
         </Form>
+        {!this.state.hasUser && (
+          <Alert variant='danger'>Please select an user on menu !</Alert>
+        )}
       </div>
     );
   }

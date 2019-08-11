@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Nav, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { logout } from '../../actions/user';
+// { logout } from '../../actions/user';
 
 const Header = ({ authedUser, dispatch, history }) => {
   // const handleLogout = () => {

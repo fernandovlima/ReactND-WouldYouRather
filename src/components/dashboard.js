@@ -59,12 +59,17 @@ const mapStateToProps = (store, props) => {
   const { questions } = store;
   const user = store.user[authedUser];
   //const isAuthed = typeof user === "undefined" ? false : true
-  const unanswered = Object.keys(questions).filter(
-    id => typeof user.answers[id] === 'undefined'
-  );
+  const unanswered = Object.keys(questions)
+    .filter(id => typeof user.answers[id] === 'undefined')
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
   return {
     authedUser: store.user.authedUser,
-    answers: typeof user !== 'undefined' ? Object.keys(user.answers) : {},
+    answers:
+      typeof user !== 'undefined'
+        ? Object.keys(user.answers).sort(
+            (a, b) => questions[b].timestamp - questions[a].timestamp
+          )
+        : {},
     unanswered,
     user
   };
