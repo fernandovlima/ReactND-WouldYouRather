@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom';
 import { logout } from '../../actions/user';
 
 const Header = ({ authedUser, dispatch, history }) => {
-  const handleLogout = () => {
-    dispatch(logout());
-  };
+  // const handleLogout = () => {
+  //   dispatch(logout());
+  // };
   return (
     <div>
       <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
@@ -27,10 +27,12 @@ const Header = ({ authedUser, dispatch, history }) => {
             {authedUser && (
               <div className='nav-link user-logged '>Hello {authedUser}</div>
             )}
-
-            <NavLink to='' className='nav-link' onClick={handleLogout}>
+            <Navbar.Brand className='nav-link' href='/'>
               LOGOUT
-            </NavLink>
+            </Navbar.Brand>
+            {/* <NavLink to='/' className='nav-link'>
+              LOGOUT
+            </NavLink> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

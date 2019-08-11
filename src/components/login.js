@@ -13,8 +13,10 @@ class Login extends Component {
   }
   handleSubmit = event => {
     event.preventDefault();
-    this.props.dispatch(setAuthedUser(this.state.user));
-    this.props.history.push('/dashboard');
+    if (this.state.user !== '') {
+      this.props.dispatch(setAuthedUser(this.state.user));
+      this.props.history.push('/dashboard');
+    }
   };
 
   handleChange = event => {
@@ -37,7 +39,7 @@ class Login extends Component {
               <option>Select a user</option>
               {typeof user !== 'undefined' &&
                 Object.values(user).map(user => (
-                  <option key={user.name} value={user.id}>
+                  <option key={user.id} value={user.id}>
                     {user.name}
                   </option>
                 ))}
