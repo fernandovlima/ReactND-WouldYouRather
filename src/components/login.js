@@ -5,7 +5,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 
 class Login extends Component {
   state = {
-    user: '',
+    user: null,
     hasUser: true
   };
 
@@ -14,7 +14,7 @@ class Login extends Component {
   }
   handleSubmit = event => {
     event.preventDefault();
-    if (this.state.user !== '') {
+    if (this.state.user !== null) {
       this.props.dispatch(setAuthedUser(this.state.user));
       this.props.history.push('/dashboard');
     }
@@ -25,8 +25,11 @@ class Login extends Component {
 
   handleChange = event => {
     this.setState({
-      user: event.target.value
+      user: event.target.value,
+      
+      
     });
+    console.log("USER: " , event.target.value);
   };
 
   render() {
@@ -40,7 +43,7 @@ class Login extends Component {
           <Form.Group controlId='exampleForm.ControlSelect1'>
             <Form.Label>Would You Rather - Login in:</Form.Label>
             <Form.Control as='select' onChange={this.handleChange}>
-              <option>Select a user</option>
+              <option value={null}>Select a user</option>
               {typeof user !== 'undefined' &&
                 Object.values(user).map(user => (
                   <option key={user.id} value={user.id}>
