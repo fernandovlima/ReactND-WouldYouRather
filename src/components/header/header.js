@@ -25,11 +25,16 @@ const Header = ({ authedUser, dispatch, history }) => {
               LEADERBOARD
             </NavLink>
             {authedUser && (
-              <div className='nav-link user-logged '>Hello {authedUser}</div>
+              <div>
+                <div className='nav-link user-logged '>
+                  Hello {authedUser}
+                  <Navbar.Brand className='nav-link header-link ' href='/'>
+                    LOGOUT
+                  </Navbar.Brand>
+                </div>
+              </div>
             )}
-            <Navbar.Brand className='nav-link' href='/'>
-              LOGOUT
-            </Navbar.Brand>
+
             {/* <NavLink to='/' className='nav-link'>
               LOGOUT
             </NavLink> */}
