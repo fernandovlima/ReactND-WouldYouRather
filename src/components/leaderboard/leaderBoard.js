@@ -12,7 +12,7 @@ class LeaderBoard extends Component {
   };
 
   render() {
-    const { user, leaderboard } = this.props;
+    const { leaderboard } = this.props;
     return (
       <div className='leaderboard-wraper'>
         <div className='leaderboard-title'>
