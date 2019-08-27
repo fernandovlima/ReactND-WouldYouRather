@@ -4,10 +4,11 @@ import { Nav, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 // { logout } from '../../actions/user';
 
-const Header = ({ authedUser, dispatch, history }) => {
+const Header = ({ authedUser, avatarURL, dispatch, history }) => {
   // const handleLogout = () => {
   //   dispatch(logout());
   // };
+  console.log('teste avatar: ', avatarURL);
   return (
     <div>
       <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
@@ -25,11 +26,14 @@ const Header = ({ authedUser, dispatch, history }) => {
               LEADERBOARD
             </NavLink>
             {authedUser && (
-              <div className='nav-link user-logged '>Hello {authedUser}</div>
+              <div className='nav-link user-logged '>
+                Hello {authedUser}
+                <Navbar.Brand className='nav-link' href='/'>
+                  LOGOUT
+                </Navbar.Brand>
+              </div>
             )}
-            <Navbar.Brand className='nav-link' href='/'>
-              LOGOUT
-            </Navbar.Brand>
+
             {/* <NavLink to='/' className='nav-link'>
               LOGOUT
             </NavLink> */}
@@ -47,11 +51,14 @@ const mapStateToProps = (store, props) => {
 
   const loading = user === '' ? true : false;
   const { authedUser } = store.user;
+  const avatarURL =
+    Object.keys(store.user).length !== 0 ? store.user[authedUser] : '';
 
   return {
     question,
     user,
     loading,
+    avatarURL: typeof avatarURL !== 'undefined' ? avatarURL.avatarURL : '',
     authedUser
   };
 };

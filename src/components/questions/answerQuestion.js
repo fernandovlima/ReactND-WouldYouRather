@@ -38,11 +38,13 @@ class AnswerQuestion extends Component {
   render() {
     const {
       questionOK,
+      answer,
       isAnswered,
       voteOne,
       voteTwo,
       voteTotal,
-      loading
+      loading,
+      avatarURL
     } = this.props;
 
     return (
@@ -52,6 +54,7 @@ class AnswerQuestion extends Component {
             <div>
               <div className='question-user'>
                 <h5>Asked by {questionOK.author} </h5>
+                <img src={avatarURL} alt='avatar' />
               </div>
 
               <h5>Would you rather</h5>
@@ -65,7 +68,8 @@ class AnswerQuestion extends Component {
                       label={`${Math.floor((voteOne / voteTotal) * 100)}%`}
                       variant={isAnswered ? 'success' : 'info'}
                     />
-                    <p>{`${voteOne} of ${voteTotal} votes!`}</p>
+                    <p>{`${voteOne} of ${voteTotal} votes! ${answer ===
+                      'optionOne' && ` (your answer!)`}`}</p>
                   </div>
                   <div className='answer-option'>
                     <span>Would you rather {questionOK.optionTwo.text} ? </span>
@@ -74,7 +78,8 @@ class AnswerQuestion extends Component {
                       label={`${Math.floor((voteTwo / voteTotal) * 100)}%`}
                       variant={isAnswered ? 'success' : 'info'}
                     />
-                    <p>{`${voteTwo} of ${voteTotal} votes!`}</p>
+                    <p>{`${voteTwo} of ${voteTotal} votes! ${answer ===
+                      'optionTwo' && ` (your answer!)`}`}</p>
                   </div>
                 </div>
               ) : (
@@ -121,13 +126,16 @@ class AnswerQuestion extends Component {
 const mapStateToProps = (store, props) => {
   const { questions, user } = store;
   const { authedUser } = user;
-
+  console.log('teste authed: ', user[authedUser]);
   const id_question = props.match.params.question_id;
   const questionOK = questions[id_question];
 
   const answers =
     Object.keys(user).length !== 0 ? user[authedUser].answers : {};
   const loading = typeof questionOK === 'undefined' ? true : false;
+
+  const avatarURL =
+    Object.keys(store.user).length !== 0 ? store.user[authedUser] : '';
 
   let voteOne,
     voteTwo,
@@ -146,8 +154,10 @@ const mapStateToProps = (store, props) => {
     voteOne,
     voteTwo,
     voteTotal,
+    answer: answers[id_question],
     isAnswered: typeof answers[id_question] !== 'undefined' ? true : false,
-    loading
+    loading,
+    avatarURL
   };
 };
 export default connect(mapStateToProps)(AnswerQuestion);
