@@ -33,10 +33,6 @@ const Header = ({ authedUser, avatarURL, dispatch, history }) => {
                 </Navbar.Brand>
               </div>
             )}
-
-            {/* <NavLink to='/' className='nav-link'>
-              LOGOUT
-            </NavLink> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

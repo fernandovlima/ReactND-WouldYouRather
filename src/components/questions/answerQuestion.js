@@ -54,7 +54,9 @@ class AnswerQuestion extends Component {
             <div>
               <div className='question-user'>
                 <h5>Asked by {questionOK.author} </h5>
-                <img src={avatarURL} alt='avatar' />
+                <div className='user-avatar'>
+                  <img src={avatarURL} alt='avatar' />
+                </div>
               </div>
 
               <h5>Would you rather</h5>
@@ -126,16 +128,20 @@ class AnswerQuestion extends Component {
 const mapStateToProps = (store, props) => {
   const { questions, user } = store;
   const { authedUser } = user;
-  console.log('teste authed: ', user[authedUser]);
+
   const id_question = props.match.params.question_id;
   const questionOK = questions[id_question];
+  const { author } = questionOK;
+  console.log('AUTHOR: ', author);
+  console.log('USER:', user);
 
   const answers =
     Object.keys(user).length !== 0 ? user[authedUser].answers : {};
   const loading = typeof questionOK === 'undefined' ? true : false;
 
   const avatarURL =
-    Object.keys(store.user).length !== 0 ? store.user[authedUser] : '';
+    typeof questionOK !== 'undefined' ? user[questionOK.author].avatarURL : '';
+  console.log('AVATAR URL: ', avatarURL);
 
   let voteOne,
     voteTwo,
