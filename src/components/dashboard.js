@@ -25,7 +25,6 @@ class Dashboard extends Component {
 
   render() {
     const { answers, unanswered } = this.props;
-
     return (
       <div className='dashboard-question'>
         <div className='anwser-btns'>
@@ -46,7 +45,6 @@ class Dashboard extends Component {
         </div>
         {this.state.showAnswered ? (
           <QuestionPoll idQuestions={answers} />
-          
         ) : (
           <QuestionPoll idQuestions={unanswered} />
         )}
@@ -63,17 +61,18 @@ const mapStateToProps = (store, props) => {
   const unanswered = Object.keys(questions)
     .filter(id => typeof user.answers[id] === 'undefined')
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
-  console.log('answerws: ',user.answers);
-  
-  
+
+  const answers =
+    typeof user !== 'undefined' && typeof questions !== 'undefined'
+      ? Object.keys(user.answers)
+          .map(a => questions[a])
+          .sort((a, b) => b.timestamp - a.timestamp)
+          .map(q => typeof q !== 'undefined' && q.id)
+      : {};
+
   return {
     authedUser: store.user.authedUser,
-    answers:
-      typeof user !== 'undefined'
-        ? Object.keys(user.answers).sort(
-            (a, b) => user.answers[b].timestamp - user.answers[a].timestamp
-          )
-        : {},
+    answers,
     unanswered,
     user
   };

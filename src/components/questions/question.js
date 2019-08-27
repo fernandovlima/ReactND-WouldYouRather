@@ -1,28 +1,35 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { connect } from "react-redux"
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Question = ({ user, loading, question, ...props }) => {
+const Question = ({
+  user,
+  authedUser,
+  loading,
+  question,
+  history,
+  ...props
+}) => {
   return (
-    <div className="question-wraper">
+    <div className='question-wraper'>
       {loading ? (
-        "Carregando..."
+        'Carregando...'
       ) : (
-        <div className="questions-list-container">
-          <div className="question-user">
+        <div className='questions-list-container'>
+          <div className='question-user'>
             <h5>{user.name} says...</h5>
           </div>
-          <div className="user-avatar">
-            <img src={user.avatarURL} alt="avatar" />
+          <div className='user-avatar'>
+            <img src={user.avatarURL} alt='avatar' />
           </div>
-          <div className="question_info">
+          <div className='question_info'>
             <h5>Would you rather</h5>
             <p>... {question.optionOne.text} ...</p>
           </div>
 
           <Link
-            className="btn btn-default"
-            label="View Poll"
+            className='btn btn-default'
+            label='View Poll'
             to={`/questions/${question.id}`}
           >
             View Poll
@@ -30,20 +37,21 @@ const Question = ({ user, loading, question, ...props }) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = (store, props) => {
-  const question = store.questions[props.idQuestion]
+  const question = store.questions[props.idQuestion];
   const user =
-    typeof question !== "undefined" ? store.user[question.author] : ""
+    typeof question !== 'undefined' ? store.user[question.author] : '';
 
-  const loading = user === "" ? true : false
+  const loading = user === '' ? true : false;
 
   return {
+    authedUser: user.authedUser,
     question,
     user,
     loading
-  }
-}
-export default connect(mapStateToProps)(Question)
+  };
+};
+export default connect(mapStateToProps)(Question);

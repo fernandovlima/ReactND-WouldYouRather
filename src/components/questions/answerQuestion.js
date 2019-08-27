@@ -12,7 +12,15 @@ class AnswerQuestion extends Component {
   };
 
   componentDidMount() {
-    this.props.dispatch(getAllQuestionsAPI());
+    const { authedUser, dispatch, history } = this.props;
+
+    dispatch(getAllQuestionsAPI());
+
+    typeof authedUser === 'undefined' &&
+      history.push({
+        pathname: '/',
+        state: { unAuth: true }
+      });
   }
 
   handleOptionChange = e => {
@@ -21,12 +29,10 @@ class AnswerQuestion extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    const { id_question, authedUser } = this.props;
+    const { id_question, authedUser, dispatch } = this.props;
     const answer = this.state.selectedOption;
 
-    this.props.dispatch(
-      handleSaveQuestionAnswer(authedUser, id_question, answer)
-    );
+    dispatch(handleSaveQuestionAnswer(authedUser, id_question, answer));
   };
 
   render() {
@@ -119,7 +125,8 @@ const mapStateToProps = (store, props) => {
   const id_question = props.match.params.question_id;
   const questionOK = questions[id_question];
 
-  const { answers } = typeof user !== 'undefined' ? user[authedUser] : {};
+  const answers =
+    Object.keys(user).length !== 0 ? user[authedUser].answers : {};
   const loading = typeof questionOK === 'undefined' ? true : false;
 
   let voteOne,

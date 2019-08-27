@@ -4,7 +4,7 @@ import {
   _getQuestions,
   _saveQuestion,
   _saveQuestionAnswer
-} from "./_DATA.js"
+} from './_DATA.js';
 
 export function getInitialData() {
   return Promise.all([_getUsers(), _getQuestions()]).then(
@@ -12,27 +12,27 @@ export function getInitialData() {
       users,
       questions
     })
-  )
+  );
 }
 
 export function setLogin(id) {
-  return _setLogin(id)
+  return _setLogin(id);
 }
 
 export function saveQuestion(question) {
-  return _saveQuestion(question)
+  return _saveQuestion(question);
 }
 
 export function getUsers() {
   return Promise.all([_getUsers()]).then(([users]) => ({
     users
-  }))
+  }));
 }
 
 export function getQuestions() {
   return Promise.all([_getQuestions()]).then(([questions]) => ({
     questions
-  }))
+  }));
 }
 
 export function saveQuestionAnswerAPI(user, qid, answer) {
@@ -40,7 +40,7 @@ export function saveQuestionAnswerAPI(user, qid, answer) {
     authedUser: user,
     qid,
     answer
-  }
+  };
 
-  return _saveQuestionAnswer(data)
+  return _saveQuestionAnswer(data);
 }

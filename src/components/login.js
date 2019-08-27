@@ -6,16 +6,21 @@ import { Form, Button, Alert } from 'react-bootstrap';
 class Login extends Component {
   state = {
     user: null,
-    hasUser: true
+    hasUser: true,
+    unAuth: false
   };
 
   componentDidMount() {
     this.props.dispatch(getAllUser());
+    if (typeof this.props.location.state !== 'undefined') {
+      this.props.location.state.unAuth && this.setState({ unAuth: true });
+    }
   }
   handleSubmit = event => {
     event.preventDefault();
     if (this.state.user !== null) {
       this.props.dispatch(setAuthedUser(this.state.user));
+      this.state.unAuth && this.props.history.goBack();
       this.props.history.push('/dashboard');
     }
     this.setState({
@@ -24,12 +29,7 @@ class Login extends Component {
   };
 
   handleChange = event => {
-    this.setState({
-      user: event.target.value,
-      
-      
-    });
-    console.log("USER: " , event.target.value);
+    this.setState({ user: event.target.value });
   };
 
   render() {
