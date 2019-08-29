@@ -12,9 +12,11 @@ class AnswerQuestion extends Component {
   };
 
   componentDidMount() {
-    const { authedUser, dispatch, history } = this.props;
+    const { authedUser, dispatch, history, page404 } = this.props;
 
     dispatch(getAllQuestionsAPI());
+
+    page404 && history.push('/noMatchPage');
 
     typeof authedUser === 'undefined' &&
       history.push({
@@ -131,9 +133,11 @@ const mapStateToProps = (store, props) => {
 
   const id_question = props.match.params.question_id;
   const questionOK = questions[id_question];
-  const { author } = questionOK;
-  console.log('AUTHOR: ', author);
-  console.log('USER:', user);
+
+  const page404 =
+    Object.entries(questions).length > 0 && typeof questionOK === 'undefined'
+      ? true
+      : false;
 
   const answers =
     Object.keys(user).length !== 0 ? user[authedUser].answers : {};
@@ -163,7 +167,8 @@ const mapStateToProps = (store, props) => {
     answer: answers[id_question],
     isAnswered: typeof answers[id_question] !== 'undefined' ? true : false,
     loading,
-    avatarURL
+    avatarURL,
+    page404
   };
 };
 export default connect(mapStateToProps)(AnswerQuestion);
